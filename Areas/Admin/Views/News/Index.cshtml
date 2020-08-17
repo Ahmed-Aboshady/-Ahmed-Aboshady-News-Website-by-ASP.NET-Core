@@ -1,0 +1,62 @@
+﻿@model IEnumerable<NewsApp.Models.News>
+
+@{
+    ViewData["Title"] = "Index";
+}
+    <div class="container mt-lg-2">
+        <center>
+            <h1>News</h1>
+            </center>
+            <p>
+                <a asp-action="Create" class="btn btn-info">Create New</a>
+            </p>
+            <table class="table table-bordered table-dark" >
+                <thead>
+                    <tr>
+                        <th style="width:20%">
+                            Title
+                        </th>
+                        <th>
+                            Date
+                        </th>
+                        <th>
+                            Image
+                        </th>
+                        <th style="width:20%">
+                            Topic
+                        </th>
+                        <th>
+                            Category
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @item.Title
+                            </td>
+                            <td>
+                                @item.Date
+                            </td>
+                            <td>
+                               <img src="~/images/@item.Image" width="250" height="250" /> 
+                            </td>
+                            <td>
+                                @item.Topic
+                            </td>
+                            <td>
+                                @item.Category.Name
+                            </td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Edit</a> |
+                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-dark">Details</a> |
+                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
